@@ -1,0 +1,38 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "haravan-mcp",
+  "version": "0.1.0",
+  "description": "Discover permission-scoped Haravan API guidance and execute validated requests through the Haravan MCP server.",
+  "author": {
+    "name": "Haravan AI Plugin maintainers"
+  },
+  "homepage": "https://github.com/worktinhbuithanh-code/haravan-marketplace",
+  "repository": "https://github.com/worktinhbuithanh-code/haravan-marketplace",
+  "license": "MIT",
+  "keywords": [
+    "haravan",
+    "mcp",
+    "ecommerce"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Haravan SKU",
+        "shortDescription": "Permission-aware Haravan API access through MCP.",
+        "longDescription": "Use Haravan discovery, inspection, execution, and connection-status tools. The server keeps shop credentials and access tokens on the backend.",
+        "developerName": "Haravan AI Plugin maintainers",
+        "category": "Productivity",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/worktinhbuithanh-code/haravan-marketplace",
+        "defaultPrompt": [
+          "Use Haravan to check the connection status.",
+          "Use Haravan to find and inspect the API guidance needed for this request, then execute only the documented request."
+        ],
+        "brandColor": "#0B6E99"
+      }
+    }
+  }
+}

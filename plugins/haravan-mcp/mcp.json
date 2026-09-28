@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "haravan": {
+      "type": "streamable-http",
+      "url": "https://plugin-enc0.onrender.com/mcp"
+    }
+  }
+}
