@@ -4,7 +4,8 @@ description: Search, retrieve, and summarize Haravan orders using documented, pe
 ---
 
 Use this skill for order retrieval, order lists, and order-level summaries. For
-each API-backed request, discover the relevant permission-filtered guidance,
+explicit order creation, use `order-creation` instead. For each
+API-backed request, discover the relevant permission-filtered guidance,
 inspect the original document, then execute only the documented request with
 its `document_id`. Keep the instructions below for order-specific choices.
 
