@@ -4,9 +4,10 @@ description: Search or retrieve Haravan customers using documented, permission-f
 ---
 
 Use this skill for customer search and retrieval. For each API-backed request,
-discover the relevant permission-filtered guidance, inspect the original
-document, then execute only the documented request with its `document_id`.
-Use only lookup criteria and response fields documented by that guidance.
+discover one focused customer intent, inspect the original permission-filtered
+document, then execute only the documented request with its `document_id` and
+inspected `version`. Use only lookup criteria and response fields documented by
+that guidance.
 
 Keep customer responses projected and minimal. Probe once only if the
 documented search endpoint supports it and the response shape is genuinely

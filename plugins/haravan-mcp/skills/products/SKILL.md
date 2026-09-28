@@ -4,10 +4,10 @@ description: Search or retrieve Haravan products using documented, permission-fi
 ---
 
 Use this skill for product search and retrieval. For each API-backed request,
-discover the relevant permission-filtered guidance, inspect the original
-document, then execute only the documented request with its `document_id`.
-Inspect the guidance before supplying SKU, barcode, product-id, or other
-product identifiers.
+discover one focused product or variant intent, inspect the original
+permission-filtered document, then execute only the documented request with
+its `document_id` and inspected `version`. Inspect the guidance before
+supplying SKU, barcode, product-id, or other product identifiers.
 
 Use the documented `fields` parameter whenever available. Probe once only when
 the documented endpoint supports it and the response shape is uncertain. Avoid

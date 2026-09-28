@@ -8,6 +8,12 @@ The create endpoint is:
 POST https://apis.haravan.com/com/orders.json
 ```
 
+In the Haravan MCP workflow, the HTTP POST is first passed to
+`haravan_execute_api` with the inspected document `version` and a stable
+`idempotency_key`. That call returns a confirmation plan; the order is sent
+only after `haravan_confirm_mutation` receives the exact returned
+`confirmation_id` following explicit user confirmation.
+
 The minimum documented payload is an `order` object containing one or more line
 items. Each simple line item uses a `variant_id` and a positive `quantity`:
 
@@ -57,6 +63,10 @@ items. Each simple line item uses a `variant_id` and a positive `quantity`:
   parameters; this requires `com.read_shippings`.
 - Order confirmation, when explicitly requested: `POST
   /com/orders/{order_id}/confirm.json`.
+
+Do not confuse the order's optional `is_confirm` field with the MCP mutation
+confirmation step. `is_confirm` changes Haravan's order behavior; the MCP
+confirmation step authorizes sending the prepared HTTP mutation.
 
 The order API requires `com.write_orders`; read access is `com.read_orders`.
 Commerce write scopes include read access according to Haravan's access-scope

@@ -7,7 +7,9 @@ Use this skill for order retrieval, order lists, and order-level summaries. For
 explicit order creation, use `order-creation` instead. For each
 API-backed request, discover the relevant permission-filtered guidance,
 inspect the original document, then execute only the documented request with
-its `document_id`. Keep the instructions below for order-specific choices.
+its `document_id` and inspected `version`. Keep each discovery query focused on one order resource or
+workflow stage; do not submit a compound business sentence as one discovery
+intent. Keep the instructions below for order-specific choices.
 
 Use documented date, payment, fulfillment, and status filters. Never invent a
 filter, endpoint, status value, or response field. Choose the smallest fields

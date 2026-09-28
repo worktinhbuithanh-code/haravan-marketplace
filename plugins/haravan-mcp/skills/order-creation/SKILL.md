@@ -29,22 +29,25 @@ is set to `paid`.
    - a shipping address when the order requires delivery, using documented
      country/province/district codes rather than guessed names or IDs.
 3. If the user provides only SKU, barcode, or product name, discover and
-   inspect the product/variant guidance first. Resolve exactly one variant per
+   inspect one product/variant intent first. Resolve exactly one variant per
    line item; if a value is ambiguous, ask instead of choosing.
-4. If shipping cost or method is required, use the documented shipping-rate
-   request with the destination IDs, order total, and total weight. Put only the
-   selected documented rate into `shipping_lines`.
+4. If shipping cost or method is required, discover and inspect a separate
+   shipping-rate intent. Use the documented request with the destination IDs,
+   order total, and total weight, then put only the selected documented rate
+   into `shipping_lines`.
 5. Decide optional side effects explicitly. Do not enable receipts, fulfillment,
    confirmation, discounts, custom pricing, gateway, or `is_cod_gateway` unless
    the user asked for that behavior and the inspected guidance supports it.
-6. Call `haravan_discover_api` with the order-creation goal, then call
-   `haravan_inspect_api` for the returned document. Build the request only from
-   the original `llms.txt` content and execute `POST /com/orders.json` through
-   `haravan_execute_api` with its `document_id`.
-7. Because creation is consequential, show a concise preview and obtain
-   confirmation immediately before the POST unless the user's current message
-   already explicitly authorizes creation with an unambiguous payload.
-8. Verify the response before reporting success. Return the API order `id`,
+6. Call `haravan_discover_api` with one focused order-creation query, then call
+   `haravan_inspect_api` for the returned document. Retain its `document_id`
+   and `version`. Build the request only from the original `llms.txt` content.
+7. Generate one stable `idempotency_key` for this intended order and call
+   `haravan_execute_api` with the documented POST, `document_id`, `version`,
+   and key. This prepares a confirmation plan; it does not create the order.
+8. Show the returned plan and wait for explicit confirmation of that exact
+   order. Then call `haravan_confirm_mutation` with the exact
+   `confirmation_id`. Do not call `haravan_execute_api` again for confirmation.
+9. Verify the confirmed response before reporting success. Return the API order `id`,
    customer-facing `name` or `order_number` when present, total, currency, and
    the returned payment/fulfillment/confirmation statuses.
 
